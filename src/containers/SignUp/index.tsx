@@ -1,5 +1,17 @@
-import React, {useState} from 'react';
-import {gql, useMutation} from '@apollo/client';
+import React, {useCallback, useEffect, useState} from 'react';
+import {gql, useMutation, useQuery} from '@apollo/client';
+
+
+const GET_USER = gql`
+  query {
+    users {
+      userNo
+      id
+      pw
+      name
+    }
+  }
+`;
 
 const SIGNUP = gql`
   mutation createUser($id: String!, $pw: String!, $name: String!) {
@@ -19,24 +31,40 @@ const SignUp: React.FC = (): any => {
     name: '',
   });
 
-  const [signup, {loading, data}] = useMutation(SIGNUP);
+  const {data: userData, loading: userDataLoading} = useQuery(GET_USER);
+  const [signup, {loading, data}] = useMutation(SIGNUP, {
+    refetchQueries: [
+      { query:  GET_USER }
+    ],
+    onCompleted() {
+      alert('success')
+      console.log('success')
+    },
+    onError(error) {
+      alert(error.message)
+    }
+  });
 
-  if (loading) return 'Loading...';
-
+  const authCheck = (e: any) => {
+    const {id, pw, name} = accountInfo;
+    e.preventDefault();
+    if(
+      id !== '' &&
+      pw !== '' &&
+      name !== ''
+    ) {
+      signup({variables: {id:id, pw:pw, name:name}});
+    }
+  };
+  
   const onChange = (e: any) => {
     const {name, value} = e.target;
     setAccountInfo({...accountInfo, [name]: value});
   };
 
-  const authCheck = (e: any) => {
-    const {id, pw, name} = accountInfo;
-    e.preventDefault();
-    signup({variables: {id, pw, name}});
-
-    if (data) alert('success!');
-    else alert('fail!');
-  };
-
+  console.log('signUp Data',data);
+  console.log('Refetch userData', userData, userDataLoading);
+  if (loading) return 'Loading...';
   const {id, pw, name} = accountInfo;
   return (
     <div>
