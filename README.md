@@ -10,4 +10,4 @@ Back-end : Node.js
 
 ## 프로젝트 관리
 
-프로젝트 진행률을 관리하고 있으며 작업 확인은 [Github Projects](https://github.com/ahnytae/bbt-front.git/projects)에서 확인할 수 있습니다.
+프로젝트 진행률을 관리하고 있으며 작업 확인은 [Github Projects](https://github.com/ahnytae/bbt-front/projects)에서 확인할 수 있습니다.
