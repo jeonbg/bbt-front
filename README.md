@@ -1,8 +1,6 @@
 # BBT Side Project
 
-[CBT 문제은행 프로젝트](https://github.com/ahnytae/bbt-front)를
-Front-end : Typescript & React.js
-Back-end : Node.js
+[CBT 문제은행 프로젝트]
 
 ## 이슈 관리
 
@@ -10,4 +8,4 @@ Back-end : Node.js
 
 ## 프로젝트 관리
 
-프로젝트 진행률을 관리하고 있으며 작업 확인은 [Github Projects](https://github.com/ahnytae/bbt-front.git/projects)에서 확인할 수 있습니다.
+프로젝트 진행률을 관리하고 있으며 작업 확인은 [Github Projects](https://github.com/ahnytae/bbt-front/projects)에서 확인할 수 있습니다.
